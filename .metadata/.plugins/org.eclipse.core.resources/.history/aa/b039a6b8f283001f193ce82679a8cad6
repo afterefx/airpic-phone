@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Airpic</string>
-    <string name="pathForPicture">/images</string>
-    <string name="nameForPicture">/AirPicTest.jpg</string>
-    <string name="pref_hostname_title">Afterpeanuts.com</string>
-   <string name="pref_hostname_summary">some big summary here</string>
-   <string name="list_menu_settings">Settings</string>
-</resources>
