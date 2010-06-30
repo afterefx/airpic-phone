@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+<EditTextPreference android:key="hostname"
+                        android:title="@string/pref_hostname_title"
+                        android:summary="@string/pref_hostname_summary"
+                        android:defaultValue="140"
+                        android:numeric="integer"
+                        />
+                       
+</PreferenceScreen>

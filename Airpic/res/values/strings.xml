@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Airpic</string>
+	<string name="pathForPicture">/images</string>
+	<string name="nameForPicture">/AirPicTest.jpg</string>
+	<string name="pref_username_title">Username</string>
+	<string name="pref_username_summary">Enter your username</string>
+	<string name="pref_apikey_title">API Key</string>
+	<string name="pref_apikey_summary">Enter your API Key</string>
+	<string name="list_menu_settings">Settings</string>
+	<string name="sharedprefs"></string>
+</resources>
