@@ -128,7 +128,7 @@ public class Airpic extends Activity
     //Starts camera intent
     protected void startCameraActivity()  
     {  
-        File file = new File( _file );  //creates a file path from _file string
+        File file = new File( this._file );  //creates a file path from _file string
         Uri outputFileUri = Uri.fromFile( file ); //creates uri for file
   
         //Start intent
@@ -168,7 +168,7 @@ public class Airpic extends Activity
         options.inSampleSize = 2; //reduce size of image
       
         //Decode image and set it to the image display
-        Bitmap bitmap = BitmapFactory.decodeFile( _file, options );  
+        Bitmap bitmap = BitmapFactory.decodeFile( this._file, options );  
         _image.setImageBitmap(bitmap);  
       
       //get rid of _field so it doesn't take any layout space

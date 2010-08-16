@@ -14,18 +14,18 @@
 package com.android.airpic;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+//import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.Socket;
+//import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.codec_1_4.binary.Base64;
-import org.apache.http.HttpResponse;
+//import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -116,11 +116,11 @@ public class FileServer
 		
 	}
 
+}	
 	
 	
 	
-	
-	
+/*	
 	public static void upload2 () throws IOException
 	{
 		String _path; //holds path for image to uplaod
@@ -234,6 +234,6 @@ public class FileServer
 		long end = System.currentTimeMillis();
 		System.err.println("UploadSender.send: Done! Sent "+size+" bytes in "+(end-start)+" milliseconds");
 
-    }
-}
+    }*/
+
 
