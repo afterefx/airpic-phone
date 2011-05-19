@@ -15,22 +15,28 @@ package com.android.airpic;
 
 import java.io.BufferedInputStream;
 //import java.io.BufferedOutputStream;
+//import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+//import java.io.InputStreamReader;
 //import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.codec_1_4.binary.Base64;
 //import org.apache.http.HttpResponse;
+//import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+//import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -39,6 +45,7 @@ import android.content.SharedPreferences;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class FileServer 
 {
@@ -54,33 +61,64 @@ public class FileServer
 	
 	public void upload() throws IOException
 	{
-    	Log.i(TAG + ".upload: ", "about to try to get shared prefs");
+    	Log.i(TAG + ".upload: ", "about to try to get shared prefs.......");
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		Log.i(TAG + ".upload: ", "About to read picture data......." );
 		byte[] pictureData = readPictureData();
+		Log.i(TAG + ".upload: ", "Done reading pictureData to byte array. Now going to try encoding base 64......." );
 		byte[] pictureEncoded = Base64.encodeBase64(pictureData);
+		Log.i(TAG + ".upload: ", "Done encoding base 64. Calling uploadImage function.......");
     	uploadImage(new String(pictureEncoded));
 	}
 	
     private void uploadImage(String pictureBase64) {
-    	HttpClient httpClient = new DefaultHttpClient();  
-    	HttpPost httpPost = new HttpPost("http://mobile.afterpeanuts.com/upload.php");
-    	Log.i(this.getClass().getName(), "about to make a null thing");
-
+		Log.i(TAG + ".uploadImage: ", "Entered the uploadImage function.......");
+    	Log.i(this.getClass().getName(), "Getting username, password, and server.........");
     	String username = prefs.getString("username", "");
     	String apikey = prefs.getString("apikey", "");
+    	String server = prefs.getString("server", "");
+    	server += "/mobileupload.php";
+    	Log.i(this.getClass().getName(), "Received username, password, and server.........");
+    	HttpClient httpClient = new DefaultHttpClient();  
+    	HttpPost httpPost = new HttpPost( server );
+
     	try {  
     		List<NameValuePair> postContent = new ArrayList<NameValuePair>(2);  
     		//TODO add in api key and user key to check for upload auth
     		Log.i(TAG + ".uploadImage: Username == ", username);
     		Log.i(TAG + ".uploadImage: API Key == ", apikey);
+    		Log.i(TAG + ".uploadImage: Server == ", server);
     		postContent.add(new BasicNameValuePair("username", username));  
     		postContent.add(new BasicNameValuePair("key", apikey));  
     		postContent.add(new BasicNameValuePair("img", pictureBase64));  
+	    	Log.i(this.getClass().getName(), "Done adding post content.........");
     		httpPost.setEntity(new UrlEncodedFormEntity(postContent));  
     		httpPost.addHeader("Accept-Encoding", "html/xml");
+	    	Log.i(this.getClass().getName(), "Done setting entity and adding header.........");
     		
-    		httpClient.execute(httpPost);  
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            
+	    	Log.i(this.getClass().getName(), "About to execute httpClient.........");
+    		String responseBody = httpClient.execute(httpPost, responseHandler);  
+	    	Log.i(this.getClass().getName(), "Done executing httpClient.........");
+    		int i;
+    		for(i=0;i < responseBody.length(); i++)
+    		{
+	    		char letter = responseBody.charAt(i);
+	    		if((letter > 'a' && letter < 'z') || (letter > 'A' && letter < 'Z'))
+	    			break;
+    		}
+    		String text = responseBody.substring(i);
+    		Log.i(TAG,text);
+    		Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
+    		
+            // When HttpClient instance is no longer needed, 
+            // shut down the connection manager to ensure
+            // immediate deallocation of all system resources
+            httpClient.getConnectionManager().shutdown();  	
+    		
     		//HttpResponse httpResponse = httpClient.execute(httpPost);  
+            
     	} catch (ClientProtocolException e) {  
     		e.printStackTrace();
     	} catch (IOException e) {  

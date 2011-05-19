@@ -9,7 +9,6 @@
  * 
  * or send a letter to Creative Commons, 171 Second Street, 
  * Suite 300, San Francisco, California, 94105, USA.
- */
 
 package com.android.airpic;
 
@@ -21,9 +20,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
 import android.net.Uri;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -31,9 +28,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
-import android.view.SurfaceView;
-import android.view.SurfaceHolder;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +36,7 @@ import android.widget.TextView;
 
 public class Airpic extends Activity 
 {
-    private static final String TAG = "Airpic."; //used for output
+    private static final String TAG = "Airpic: "; //used for output
     protected Button _photoButton; //button on screen 
     protected Button _uploadButton; //button on screen 
     protected ImageView _image;  //image that will be drawn
@@ -65,63 +59,14 @@ public class Airpic extends Activity
     {  
         super.onCreate(savedInstanceState);  
       
-        //old way to set up the image preview
-        //setContentView(R.layout.camera);  
-        
-        //Get a surfaceview then the holder for the camera
-        Log.i(TAG + "oncreate:", "going to create GLSurfaceView");
-        GLSurfaceView surfaceView = new GLSurfaceView(this);
-        Log.i(TAG + "oncreate:", "set content view");
-        setContentView(surfaceView);
-        Log.i(TAG + "oncreate:", "get the surfaceholder");
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        
-        
-        //get the number of cameras and open the lowest one
-        Log.i(TAG + "oncreate:", "get the camera");
-        Camera myCamera = Camera.open(); //get the back facing camera
-        Log.i(TAG + "oncreate:", "get the camera parameters");
-        Camera.Parameters camParams = myCamera.getParameters(); //get the parameters
-        try {
-        Log.i(TAG + "oncreate:", "setting the preview display");
-			myCamera.setPreviewDisplay(surfaceHolder);
-		} catch (IOException e) {
-			Log.e(TAG + "oncreate:", "ERROR!!!!");
-			e.printStackTrace();
-		}
-        Log.i(TAG + "oncreate:", "starting preview");
-		myCamera.startPreview();
-        
-        //try to mess with the orientation 
-        //this may be unnecessary and during the program running
-        //it may need to be rotated in a different function
-        Log.i(TAG + "oncreate:", "doing rotation stuff");
-        int rotation = this.getWindowManager().getDefaultDisplay().getOrientation();
-        //switch(rotation)
-        //{
-	        //case Surface.ROTATION_0:
-		        //camParams.setRotation(Surface.ROTATION_0); break;
-	        //case Surface.ROTATION_180:
-	        	//camParams.setRotation(Surface.ROTATION_180); break;
-	        //case Surface.ROTATION_270:
-	        	//camParams.setRotation(Surface.ROTATION_270); break;
-	        //case Surface.ROTATION_90:
-	        	//camParams.setRotation(Surface.ROTATION_90); break;
-        //}
-        //camParams.setRotation(Surface.ROTATION_180);
-        Log.i(TAG + "oncreate:", "rotation is " + rotation);
-        
-
-        
-        
-        
-		//Log.i(TAG, "setContent");
-        //_image = ( ImageView ) findViewById( R.id.image );  //displays image in program
-        //_field = ( TextView ) findViewById( R.id.field );  //displays No photo take text
-        //_photoButton = ( Button ) findViewById( R.id.button );  //this is the photo button 
-        //_photoButton.setOnClickListener( new PhotoButtonClickHandler() ); //event handler for button
-        //_uploadButton = ( Button ) findViewById( R.id.button2 ); //this is the upload button
-        //_uploadButton.setOnClickListener( new UploadButtonClickHandler() ); //event handler for button
+        setContentView(R.layout.camera);  
+		Log.i(TAG, "setContent");
+        _image = ( ImageView ) findViewById( R.id.image );  //displays image in program
+        _field = ( TextView ) findViewById( R.id.field );  //displays No photo take text
+        _photoButton = ( Button ) findViewById( R.id.button );  //this is the photo button 
+        _photoButton.setOnClickListener( new PhotoButtonClickHandler() ); //event handler for button
+        _uploadButton = ( Button ) findViewById( R.id.button2 ); //this is the upload button
+        _uploadButton.setOnClickListener( new UploadButtonClickHandler() ); //event handler for button
         Log.i(TAG, "Created UI");
       
         //set path to store image
@@ -247,7 +192,7 @@ public class Airpic extends Activity
         }  
     }
     
-    /* Creates the menu items */
+    // Creates the menu items 
     public boolean onCreateOptionsMenu(Menu menu) 
     {
     	MenuItem settings = menu.add(R.string.list_menu_settings);
@@ -285,3 +230,5 @@ public class Airpic extends Activity
 }
 
 
+
+ */

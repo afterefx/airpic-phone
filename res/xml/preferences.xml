@@ -10,5 +10,10 @@
 						android:title="@string/pref_apikey_title"
 						android:summary="@string/pref_apikey_summary"
 						/>
+<EditTextPreference android:key="server"
+						android:defaultValue="@string/pref_server_default"
+						android:title="@string/pref_server_title"
+						android:summary="@string/pref_server_summary"
+						/>
                        
 </PreferenceScreen>
