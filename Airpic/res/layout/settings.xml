@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+
+ <TableLayout android:layout_width="fill_parent"
+                 android:layout_height="fill_parent">
+        <TableRow>
+        
+        	<TextView android:text="@string/serverLabel"	 
+				android:id="@+id/TextView01" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"></TextView>
+  				  
+  			<EditText android:text=""
+  			    android:hint="@string/serverNameHint" 
+				android:id="@+id/serverName" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:inputType="textUri"></EditText>
+        </TableRow>
+        <TableRow>
+        
+        <TextView android:text="@string/userLabel" 
+  				  android:id="@+id/userLabel" 
+  				  android:layout_width="wrap_content" 
+  				  android:layout_height="wrap_content"></TextView>
+  				  
+  		<EditText android:text=""
+		  android:hint="@string/userNameHint" 
+		  android:id="@+id/userName" 
+		  android:layout_width="wrap_content" 
+		  android:layout_height="wrap_content"
+		  android:inputType="textUri"></EditText>
+        
+        </TableRow>
+        
+    </TableLayout>
+</LinearLayout>

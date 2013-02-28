@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Airpic</string>
+    <string name="pathSavePic">/images/airpic.jpg</string>
+    <string name="pathForPicture">/images</string>
+    <string name="nameForPicture">/airpic.jpg</string>
+    <string name="serverLabel">Server Name:</string>
+    <string name="serverNameHint">yoursite.com</string>
+    <string name="userLabel">Username:</string>
+    <string name="userNameHint">Username</string>
+    <string name="passwordLabel">Password:</string>
+    <string name="pref_hostname_title">yoursite.com</string>
+    <string name="pref_hostname_summary">some big summary here</string>
+    <string name="list_menu_settings">Settings</string>
+</resources>
